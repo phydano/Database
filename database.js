@@ -1,15 +1,15 @@
-var express = require('express');
-var app = express();
-var pg = require('pg').native;
-var connectionString = process.env.DATABASE_URL;
-var port = process.env.PORT;
-var client;
+var express = require('express')
+  , app = express()
+  , pg = require('pg').native
+  , connectionString = process.env.DATABASE_URL
+  , port = process.env.PORT
+  , client;
+client = new pg.Client(connectionString);
+client.connect();
 var database = [
 	{ user : 'This is the user', text : "This is the comment that users input" }
 ];
 
-client = new pg.Client(connectionString);
-client.connect();
 app.use(express.bodyParser()); // make express handle JSON and other requests 
 app.use(express.static(_dirname)); // serve up the files from this directory 
 app.use(app.router); // if not able to serve up a static file try and handle as REST invocation 
