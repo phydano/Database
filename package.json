@@ -9,11 +9,4 @@
     "express": "^3.5.1",
     "pg": "^3.0.3"
   }
-
-"sql_exec.commands": {
-"mysql" : "mysql",
-"pgsql" : "/Applications/Postgres.app/Contents/Versions/9.3/bin/psql",
-"oracle" : "sqlplus",
-"vertica": "vsql",
-}
 }
