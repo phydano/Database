@@ -10,7 +10,6 @@ client.connect();
 var database = [
 	{ person : 'This is the person', comment : "This is the comment that persons input" }
 ];
-var query = client.query("SELECT * FROM mydatabase");
 
 app.use(express.bodyParser()); // make express handle JSON and other requests 
 app.use(express.static(__dirname)); // serve up the files from this directory 
@@ -29,16 +28,6 @@ app.post('/database', function(req, res) {
 	console.log("Added!");
 	newComment.pos = database.length - 1;
 	res.send(newComment);
-});
-
-app.get('/database/:id', function(req, res) {
-  if(database.length <= req.params.id || req.params.id < 0) {
-    res.statusCode = 404;
-    return res.send('Error 404: No quote found');
-  }
-
-  var q = database[req.params.id];
-  res.send(q);
 });
 
 app.listen(port, function() {
