@@ -5,7 +5,7 @@ var connectionString = process.env.DATABASE_URL;
 var port = process.env.PORT;
 var client;
 var database = [
-	{ user: 'This is the user', text: "This is the comment that users input" }
+	{ user : 'This is the user', text : "This is the comment that users input" }
 ];
 
 client = new pg.Client(connectionString);
@@ -20,7 +20,7 @@ app.post('/database', function(req, res) {
 		res.statusCode = 400;
 		return res.send('Error 400: Post Syntax incorrect.');
 	}
-	var newComment = { user: req.body.user, text: req.body.text });
+	var newComment = { user: req.body.user, text: req.body.text };
 	
 	database.push(newComment);
 	console.log("Added!");
