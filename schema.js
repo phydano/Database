@@ -5,6 +5,6 @@ var pg = require('pg').native
 
 client = new pg.Client(connectionString);
 client.connect();
-query = client.query('CREATE TABLE Mydatabase (user text , text text)');
+query = client.query('CREATE TABLE mydatabase (user text , comment text)');
 query.on('end', function(result) { client.end(); });
 
