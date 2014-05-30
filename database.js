@@ -31,6 +31,16 @@ app.post('/database', function(req, res) {
 	res.send(newComment);
 });
 
+app.get('/database/:id', function(req, res) {
+  if(database.length <= req.params.id || req.params.id < 0) {
+    res.statusCode = 404;
+    return res.send('Error 404: No quote found');
+  }
+
+  var q = database[req.params.id];
+  res.send(q);
+});
+
 app.listen(port, function() {
 	console.log('Listening on:', port);
 });

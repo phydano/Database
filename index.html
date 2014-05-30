@@ -23,8 +23,10 @@
 	<div id="result"  class="functions"></div>
 
         <label for="text-1">Add a new comment:</label>
+        <input name="text-1" id="text3" value=" " type="text">
+        <input type="submit" value="GET users by ID" id="button2" />
         <input name="text-1" id="text1" value=" " type="text">
-          <input name="text-1" id="text2" value=" " type="text">
+        <input name="text-1" id="text2" value=" " type="text">
         <input type="submit" value="Submit Button" id="button1" />
 
     </div><!-- /content -->
@@ -44,11 +46,24 @@ $(document).bind('pageinit', function() {
   });
 
   $( "#button1" ).bind( "click", function(event, ui) {
+    var a = $("#text1").val();
+    var t = $("#text2").val();
     alert("Posting A new comment");
     var jsonUrl = "http://fast-plateau-1802.herokuapp.com/database";
-    var newComment = { "user" : "foo", "text" : "some text" };
+    var newComment = { "user" : a, "comment" : t };
     $.post(jsonUrl,newComment, function(data) {
-      alert("Added comment number " + data.pos + " " + data.user + " " + data.text);
+      alert("Added comment number " + data.pos + " " + data.user + " " + data.comment);
+    }, 'json');
+  });
+  
+  $( "#button2" ).bind( "click", function(event, ui) {
+    var q = $("#text3").val();
+    alert("Click "+q);
+    var jsonUrl = "http://fast-plateau-1802.herokuapp.com/database/"+q;
+    alert("Fetching result from "+jsonUrl);
+    $.get(jsonUrl, function(data) {
+      alert(data.user);
+      $("#result").html("<p><b>"+data.user+" said "+data.comment+"</b></p>")
     }, 'json');
   });
 
