@@ -45,7 +45,7 @@ $(document).bind('pageinit', function() {
 
   $( "#button1" ).bind( "click", function(event, ui) {
     alert("Posting A new comment");
-    var jsonUrl = "http://polar-springs-3967.herokuapp.com/database";
+    var jsonUrl = "http://fast-plateau-1802.herokuapp.com/database";
     var newQuote = { "user" : "foo", "text" : "some text" };
     $.post(jsonUrl,newComment, function(data) {
       alert("Added quote number " + data.pos + " " + data.user + " " + data.text);
