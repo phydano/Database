@@ -1,12 +1,27 @@
 {
-  "name": "Lab3",
-  "version": "0.0.1",
-  "description": "Lab demonstrating use of postgres on Heroku",
-  "engines": {
-    "node": "0.10.26"
+  "name": "node-example",
+  "version": "0.0.0",
+  "description": "Example app.",
+  "main": "quote.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
   },
+  
+  "repository": {
+  "type": "git",
+  "url": " "
+  },
+  "keywords": [
+    "example",
+    "heroku"
+  ],
+  "author": "dano",
+  "license": "ISC",
   "dependencies": {
-    "express": "^3.5.1",
-    "pg": "^3.0.3"
-  }
+    "logfmt": "^1.1.2",
+    "express": "^3.5.1"
+  },
+  "devDependencies": {}
+  
+  
 }
