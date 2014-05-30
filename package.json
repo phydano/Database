@@ -1,8 +1,8 @@
 {
-  "name": "node-example",
+  "name": “Mydatabase”,
   "version": "0.0.0",
   "description": "Example app.",
-  "main": "quote.js",
+  "main": “database.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
