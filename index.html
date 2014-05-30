@@ -24,7 +24,7 @@
 
         <label for="text-1">Add a new comment:</label>
         <input name="text-1" id="text3" value=" " type="text">
-        <input type="submit" value="GET users by ID" id="button2" />
+        <input type="submit" value="GET persons by ID" id="button2" />
         <input name="text-1" id="text1" value=" " type="text">
         <input name="text-1" id="text2" value=" " type="text">
         <input type="submit" value="Submit Button" id="button1" />
@@ -50,9 +50,9 @@ $(document).bind('pageinit', function() {
     var t = $("#text2").val();
     alert("Posting A new comment");
     var jsonUrl = "http://fast-plateau-1802.herokuapp.com/database";
-    var newComment = { "user" : a, "comment" : t };
+    var newComment = { "person" : a, "comment" : t };
     $.post(jsonUrl,newComment, function(data) {
-      alert("Added comment number " + data.pos + " " + data.user + " " + data.comment);
+      alert("Added comment number " + data.pos + " " + data.person + " " + data.comment);
     }, 'json');
   });
   
@@ -62,8 +62,8 @@ $(document).bind('pageinit', function() {
     var jsonUrl = "http://fast-plateau-1802.herokuapp.com/database/"+q;
     alert("Fetching result from "+jsonUrl);
     $.get(jsonUrl, function(data) {
-      alert(data.user);
-      $("#result").html("<p><b>"+data.user+" said "+data.comment+"</b></p>")
+      alert(data.person);
+      $("#result").html("<p><b>"+data.person+" said "+data.comment+"</b></p>")
     }, 'json');
   });
 
