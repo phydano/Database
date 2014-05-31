@@ -21,7 +21,7 @@ app.post('/database', function(req, res) {
 		res.statusCode = 400;
 		return res.send('Error 400: Post Syntax incorrect.');
 	}
-	client.query("INSERT INTO mydatabase(person, comment) VALUES("req.body.person", "req.body.comment")");
+	client.query("INSERT INTO mydatabase(person, comment) VALUES(req.body.person, req.body.comment)");
 	var newComment = { person: req.body.person, comment: req.body.comment };
 	
 	database.push(newComment);
