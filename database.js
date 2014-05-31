@@ -27,7 +27,7 @@ app.post('/database', function(req, res) {
 	console.log("Added!");
 	newComment.pos = database.length - 1;
 	client.query("INSERT INTO mydatabase(person, comment) VALUES(newComment.person, newComment.comment)");
-	res.send("INSERT INTO mydatabase(person, comment) VALUES('bob', 'another comment')");  
+	res.send(newComment);
 });
 
 app.listen(port, function() {
