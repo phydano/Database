@@ -52,7 +52,7 @@ $(document).bind('pageinit', function() {
     var jsonUrl = "http://fast-plateau-1802.herokuapp.com/database";
     var newComment = { "person" : a, "comment" : t };
     $.post(jsonUrl,newComment, function(data) {
-      alert("Added comment number " + data.pos + " " + data.person + " " + data.comment);
+      alert("Added comment number " + data.pos + " " + data.person + " said " + data.comment);
     }, 'json');
   });
   
