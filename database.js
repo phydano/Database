@@ -24,7 +24,7 @@ app.post('/database', function(req, res) {
 
 	client.query("INSERT INTO mydatabase (person, comment) VALUES ($1, $2)", [req.body.person, req.body.comment]);
 
-  	query = client.query("SELECT * FROM mydatabase");
+    var query = client.query("SELECT * FROM mydatabase");
 
   	query.on('row', function(result) {
     	console.log(result);
@@ -35,6 +35,22 @@ app.post('/database', function(req, res) {
       		res.json(result);
     	}
   	});
+});
+
+app.get('/databse/:person', function(req, res) {
+
+  var query = client.query("SELECT person FROM mydatabase");
+  query.on('row', function(row, result) {
+	result.addRow(row);
+    });
+    query.on('end', function(result) {
+    for(var i=0; i<result.rows.length; i++){
+   		 if(req.params.person == result.rows[i].person){
+   		 	res.send(result.rows[i].person);
+   		 }
+    }
+	res.json(result);
+    });
 });
 
 app.listen(port, function() {
