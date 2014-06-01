@@ -21,13 +21,20 @@ app.post('/database', function(req, res) {
 		res.statusCode = 400;
 		return res.send('Error 400: Post Syntax incorrect.');
 	}
-	
-	var newComment = { person: req.body.person, comment: req.body.comment };
-	database.push(newComment);
-	console.log("Added!");
-	newComment.pos = database.length - 1;
-	client.query("INSERT INTO mydatabase(person, comment) VALUES(newComment.person, newComment.comment)");
-	res.send(newComment);
+
+	client.query("INSERT INTO mydatabase (person, comment) VALUES ($1, $2)", [req.body.person, req.body.comment]);
+
+  	query = client.query("SELECT * FROM mydatabase");
+
+  	query.on('row', function(result) {
+    	console.log(result);
+
+    	if (!result) {
+      		return res.send('No data found');
+    	} else {
+      		res.json(result);
+    	}
+  	});
 });
 
 app.listen(port, function() {
