@@ -37,7 +37,7 @@ app.post('/database', function(req, res) {
   	});
 });
 
-app.get('/databse/person', function(req, res) {
+app.get('/database/person', function(req, res) {
 
   var query = client.query("SELECT person FROM mydatabase");
   query.on('row', function(row, result) {
