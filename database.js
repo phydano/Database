@@ -42,6 +42,7 @@ app.get('/databse/:person', function(req, res) {
   var query = client.query("SELECT person FROM mydatabase");
   query.on('row', function(row, result) {
 	result.addRow(row);
+	console.log('TESTING HERE %s', row.name);
     });
     query.on('end', function(result) {
     for(var i=0; i<result.rows.length; i++){
