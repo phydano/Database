@@ -61,10 +61,10 @@ $(document).bind('pageinit', function() {
     var jsonUrl = "http://fast-plateau-1802.herokuapp.com/database/person";
     alert("Fetching result from "+jsonUrl);
     $.get(jsonUrl, function(data) {
-      for(var i=0; i<data.length;i++){
-      alert(data[i].person);
-      $("#result").html("<p><b>"+data[i].person+" said "+data[i].comment+"</b></p>")
-    }, 'json');
+      for(var i=0; i<data.rows.length;i++){
+      alert(data.rows[i].person);
+      $("#result").html("<p><b>"+data[i].rows.person+" said "+data.[i].rows.comment+"</b></p>")
+    }, 'json'); 
     }
   });
 
