@@ -7,9 +7,6 @@ var express = require('express')
   
 client = new pg.Client(connectionString);
 client.connect();
-var database = [
-	{ person : 'This is the person', comment : "This is the comment that persons input" }
-];
 
 app.use(express.bodyParser()); // make express handle JSON and other requests 
 app.use(express.static(__dirname)); // serve up the files from this directory 
@@ -47,8 +44,11 @@ app.get('/database/person', function(req, res) {
     for(var i=0; i<result.rows.length; i++){
    		 	console.log(result.rows[i].person + ' says' + result.rows[i].comment);
    		 //	res.send(result.rows[i].person);
-    }
-	res.json(result.rows);
+   		 	var obj = { person: result.rows[i].person, comment: result.rows[i].comment};
+   		 	localStorage.setItem('databaseStorage', JSON.stringify(obj));
+   		 	// To retrieve the object: 
+   		 	// var obj = JSON.parse(localStorage.getItem('databaseStorage'));
+   	}
 	res.send(result.rows);
     });
 });
