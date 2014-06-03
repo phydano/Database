@@ -61,11 +61,9 @@ $(document).bind('pageinit', function() {
     var jsonUrl = "http://fast-plateau-1802.herokuapp.com/database/person";
     alert("Fetching result from "+jsonUrl);
     $.get(jsonUrl, function(data) {
-      for(var i=0; i<data.rows.length;i++){
-      alert(data.rows[i].person);
-      $("#result").html("<p><b>"+data[i].rows.person+" said "+data.[i].rows.comment+"</b></p>")
-    }, 'json'); 
-    }
+      alert(data.person);
+      $("#result").html("<p><b>"+data.person+" said "+data.comment+"</b></p>")
+    }, 'json');
   });
 
 });
