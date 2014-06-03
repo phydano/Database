@@ -39,13 +39,13 @@ app.post('/database', function(req, res) {
 
 app.get('/database/person', function(req, res) {
 
-  var query = client.query("SELECT person FROM mydatabase");
+  var query = client.query("SELECT FROM mydatabase");
   query.on('row', function(row, result) {
 	result.addRow(row);
     });
     query.on('end', function(result) {
     for(var i=0; i<result.rows.length; i++){
-   		 	console.log(result.rows[i].person + ' TESTING TESTING');
+   		 	console.log(result.rows[i].person + ' says' + result.rows[i].comment);
    		 //	res.send(result.rows[i].person);
     }
 	res.json(result);
