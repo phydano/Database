@@ -48,7 +48,7 @@ app.get('/database/person', function(req, res) {
    		 	console.log(result.rows[i].person + ' says' + result.rows[i].comment);
    		 //	res.send(result.rows[i].person);
     }
-	//res.json(result);
+	res.json(result.rows);
 	res.send(result.rows);
     });
 });
