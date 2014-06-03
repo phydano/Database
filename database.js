@@ -49,7 +49,7 @@ app.get('/database/person', function(req, res) {
    		 //	res.send(result.rows[i].person);
     }
 	//res.json(result);
-	res.send(result);
+	res.send(result.rows);
     });
 });
 
