@@ -37,19 +37,16 @@ app.post('/database', function(req, res) {
   	});
 });
 
-app.get('/databse/:person', function(req, res) {
+app.get('/databse/person', function(req, res) {
 
   var query = client.query("SELECT person FROM mydatabase");
   query.on('row', function(row, result) {
 	result.addRow(row);
-	console.log('TESTING HERE %s', row.name);
     });
     query.on('end', function(result) {
     for(var i=0; i<result.rows.length; i++){
-   		 if(req.params.person == result.rows[i].person){
    		 	console.log(result.rows[i].person + ' TESTING TESTING');
    		 	res.send(result.rows[i].person);
-   		 }
     }
 	res.json(result);
     });

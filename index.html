@@ -58,8 +58,8 @@ $(document).bind('pageinit', function() {
   
   $( "#button2" ).bind( "click", function(event, ui) {
     var q = $("#text3").val();
-    alert("Click "+ q);
-    var jsonUrl = "http://fast-plateau-1802.herokuapp.com/database/"+q;
+    alert("Click ");
+    var jsonUrl = "http://fast-plateau-1802.herokuapp.com/database/person";
     alert("Fetching result from "+jsonUrl);
     $.get(jsonUrl, function(data) {
       alert(data.person);
