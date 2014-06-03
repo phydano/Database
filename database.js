@@ -44,9 +44,9 @@ app.get('/database/person', function(req, res) {
 	result.addRow(row);
     });
     query.on('end', function(result) {
-    for(var i=0; i<result.rows.length; i++){
+    for(var i=0; i<result.rows.length-1; i++){
    		 	console.log(result.rows[i].person + ' TESTING TESTING');
-   		 	res.send(result.rows[i].person);
+   		 //	res.send(result.rows[i].person);
     }
 	res.json(result);
     });
