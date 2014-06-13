@@ -17,17 +17,17 @@ $.get(jsonUrl, function(data) {
 console.log(data);
 
 // Save the JSON to localstorage
-localStorage.setItem('newsFeed', JSON.stringify(data));
+localStorage.setItem('greenPoints', JSON.stringify(data));
 }, 'json');
 
 // Load JSON from localstorage
-var newsFeed = JSON.parse(localStorage.getItem('newsFeed'));
+var greenPoints = JSON.parse(localStorage.getItem('greenPoints'));
 
 // Print JSON to the page
-for (var i=newsFeed.length-1; i>=0; i--){
-var person = newsFeed[i].id;
-var comment = newsFeed[i].points;	
-$("#result").append("Person: "+person+", Comment: "+comment+"<br>");
+for (var i=greenPoints.length-1; i>=0; i--){
+var person = greenPoints[i].id;
+var points = greenPoints[i].points;	
+$("#result").append("Person's ID: "+person+", Green Points: "+points+"<br>");
 }
 }
 </script>
