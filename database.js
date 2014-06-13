@@ -28,11 +28,13 @@ app.post('/points', function(req, res) {
 //    query.on('end', function(result) {
     	var personId = req.body.id; // get the person's id 
     	var oldPoints = client.query("SELECT points FROM logindatabase WHERE id = $1", [personId]); // the old point the person has 
-    	var oldPointsToInt = parseInt(oldPoints);
+    	var n = oldPoints.toString(); 
+    	var oldPointsToInt = parseInt(n);
     	var newPoints = req.body.points; // the new points given 
     	var newPointsToInt = parseInt(newPoints); // convert points to integer 
     	var points = newPointsToInt + oldPointsToInt; // total points 
-    	client.query("UPDATE logindatabase SET points = $1 WHERE id = $2", [points, personId]); // update the person's points 
+    	var m = points.toString(); 
+    	client.query("UPDATE logindatabase SET points = $1 WHERE id = $2", [m, personId]); // update the person's points 
   	});
 });
 
