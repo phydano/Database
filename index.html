@@ -8,8 +8,31 @@
 <link rel="stylesheet" href="http://code.jquery.com/mobile/1.4.2/jquery.mobile-1.4.2.min.css" />
 <script src="http://code.jquery.com/jquery-1.9.1.min.js"></script>
 <script src="http://code.jquery.com/mobile/1.4.2/jquery.mobile-1.4.2.min.js"></script>
+	<!-- Refresh Function -->
+<script type="text/javascript">
+function refresh(){
+var jsonUrl = "http://fast-plateau-1802.herokuapp.com/database/get";
+
+$.get(jsonUrl, function(data) {
+console.log(data);
+
+// Save the JSON to localstorage
+localStorage.setItem('newsFeed', JSON.stringify(data));
+}, 'json');
+
+// Load JSON from localstorage
+var newsFeed = JSON.parse(localStorage.getItem('newsFeed'));
+
+// Print JSON to the page
+for (var i=newsFeed.length-1; i>=0; i--){
+var person = newsFeed[i].id;
+var comment = newsFeed[i].points;	
+$("#result").append("Person: "+person+", Comment: "+comment+"<br>");
+}
+}
+</script>
 </head>
-<body>
+<body onload="refresh()">
 <!-- Start of first page -->
 <div data-role="page" id="foo">
 
@@ -26,6 +49,7 @@
         <input name="text-1" id="text1" value=" " type="text">
         <input name="text-1" id="text2" value=" " type="text">
         <input type="submit" value="Submit Button" id="button1" />
+        <input type="submit" value="Refresh" id="refreshButton" />
 
     </div><!-- /content -->
 
@@ -46,12 +70,17 @@ $(document).bind('pageinit', function() {
   $( "#button1" ).bind( "click", function(event, ui) {
     var a = $("#text1").val(); // the person's id to give points to
     var t = $("#text2").val(); // the number of points 
-    var jsonUrl = "http://fast-plateau-1802.herokuapp.com/points"; 
+    var jsonUrl = "http://fast-plateau-1802.herokuapp.com/database"; 
     var newPoint = { "id" : a, "points" : t };
     $.post(jsonUrl,newPoint, function(data) { // It's better to use put rather than post 
       alert("Updated new points " + data.id + " said " + data.points);
     }, 'json');
   });
+  
+  	// Calls the refresh function
+$( "#refreshButton" ).bind( "click", function(event, ui) {
+refresh();
+});
   
 //  $( "#button2" ).bind( "click", function(event, ui) {
 //    alert("Click ");

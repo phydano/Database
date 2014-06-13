@@ -12,7 +12,7 @@ app.use(express.bodyParser()); // make express handle JSON and other requests
 app.use(express.static(__dirname)); // serve up the files from this directory 
 app.use(app.router); // if not able to serve up a static file try and handle as REST invocation 
 
-app.post('/points', function(req, res) {
+app.post('/database', function(req, res) {
 	console.log(req.body);
 	if(!req.body.hasOwnProperty('id') || !req.body.hasOwnProperty('points')) {
 		res.statusCode = 400;
@@ -36,24 +36,18 @@ app.post('/points', function(req, res) {
   	});
 });
 
-//app.get('/database/person', function(req, res) {
+// Get all of the stuff from database 
+app.get('/database/get', function(req, res) {
 
-//  var query = client.query("SELECT * FROM mydatabase");
-//  query.on('row', function(row, result) {
-//	result.addRow(row);
-//    });
-//    query.on('end', function(result) {
-//    for(var i=0; i<result.rows.length; i++){
-//   		 	console.log(result.rows[i].person + ' says' + result.rows[i].comment);
-//   		 //	res.send(result.rows[i].person);
-//   		 	var obj = { person: result.rows[i].person, comment: result.rows[i].comment};
-//   		 	localStorage.setItem('databaseStorage', JSON.stringify(obj));
-//   		 	// To retrieve the object: 
-//   		 	// var obj = JSON.parse(localStorage.getItem('databaseStorage'));
-//   	}
-//	res.send(result.rows);
-//    });
-// });
+  var query = client.query("SELECT * FROM logindatabase");
+  query.on('row', function(row, result) {
+    result.addRow(row);
+  });
+  query.on('end', function(result) {
+    // Send JSON back to the client
+    res.json(result.rows);
+    });
+});
 
 app.listen(port, function() {
 	console.log('Listening on:', port);
