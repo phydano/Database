@@ -12,46 +12,46 @@ app.use(express.bodyParser()); // make express handle JSON and other requests
 app.use(express.static(__dirname)); // serve up the files from this directory 
 app.use(app.router); // if not able to serve up a static file try and handle as REST invocation 
 
-app.post('/database', function(req, res) {
+app.post('/points', function(req, res) {
 	console.log(req.body);
-	if(!req.body.hasOwnProperty('person') || !req.body.hasOwnProperty('comment')) {
+	if(!req.body.hasOwnProperty('id') || !req.body.hasOwnProperty('points')) {
 		res.statusCode = 400;
 		return res.send('Error 400: Post Syntax incorrect.');
 	}
 
-	client.query("INSERT INTO mydatabase (person, comment) VALUES ($1, $2)", [req.body.person, req.body.comment]);
-
-    var query = client.query("SELECT * FROM mydatabase");
+    var query = client.query("SELECT * FROM logindatabase");
 
   	query.on('row', function(result) {
     	console.log(result);
-
-    	if (!result) {
-      		return res.send('No data found');
-    	} else {
-      		res.json(result);
-    	}
+    	result.addRow(row);
+    });
+    query.on('end', function(result) {
+    	var personId = req.body.id; // get the person's id 
+    	var oldPoints = client.query("SELECT points FROM logindatabase WHERE id = $1", [personId]); // the old point the person has 
+    	var newPoints = req.body.points; // the new points given 
+    	var points = newPoints + oldPoints; // total points 
+    	client.query("UPDATE logindatabase SET points = $1 WHERE id = $2", [points, personId]); // update the person's points 
   	});
 });
 
-app.get('/database/person', function(req, res) {
+//app.get('/database/person', function(req, res) {
 
-  var query = client.query("SELECT * FROM mydatabase");
-  query.on('row', function(row, result) {
-	result.addRow(row);
-    });
-    query.on('end', function(result) {
-    for(var i=0; i<result.rows.length; i++){
-   		 	console.log(result.rows[i].person + ' says' + result.rows[i].comment);
-   		 //	res.send(result.rows[i].person);
-   		 	var obj = { person: result.rows[i].person, comment: result.rows[i].comment};
-   		 	localStorage.setItem('databaseStorage', JSON.stringify(obj));
-   		 	// To retrieve the object: 
-   		 	// var obj = JSON.parse(localStorage.getItem('databaseStorage'));
-   	}
-	res.send(result.rows);
-    });
-});
+//  var query = client.query("SELECT * FROM mydatabase");
+//  query.on('row', function(row, result) {
+//	result.addRow(row);
+//    });
+//    query.on('end', function(result) {
+//    for(var i=0; i<result.rows.length; i++){
+//   		 	console.log(result.rows[i].person + ' says' + result.rows[i].comment);
+//   		 //	res.send(result.rows[i].person);
+//   		 	var obj = { person: result.rows[i].person, comment: result.rows[i].comment};
+//   		 	localStorage.setItem('databaseStorage', JSON.stringify(obj));
+//   		 	// To retrieve the object: 
+//   		 	// var obj = JSON.parse(localStorage.getItem('databaseStorage'));
+//   	}
+//	res.send(result.rows);
+//    });
+// });
 
 app.listen(port, function() {
 	console.log('Listening on:', port);

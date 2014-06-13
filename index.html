@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>Page Title</title>
+    <title>Giving Green Points</title>
 
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
@@ -14,7 +14,7 @@
 <div data-role="page" id="foo">
 
     <div data-role="header">
-        <h1>Foo</h1>
+        <h1>GreenPoints</h1>
     </div><!-- /header -->
 
     <div role="main" class="ui-content">
@@ -22,7 +22,7 @@
 	<!-- put the result here -->
 	<div id="result"  class="functions"></div>
 
-        <label for="text-1">Add a new comment:</label>
+        <label for="text-1">Give Points:</label>
         <input type="submit" value="GET From the database" id="button2" />
         <input name="text-1" id="text1" value=" " type="text">
         <input name="text-1" id="text2" value=" " type="text">
@@ -31,7 +31,7 @@
     </div><!-- /content -->
 
     <div data-role="footer">
-        <h4>Page Footer</h4>
+        <h4>End</h4>
     </div><!-- /footer -->
 </div><!-- /page -->
 
@@ -45,25 +45,24 @@ $(document).bind('pageinit', function() {
   });
 
   $( "#button1" ).bind( "click", function(event, ui) {
-    var a = $("#text1").val();
-    var t = $("#text2").val();
-    alert("Posting A new comment");
-    var jsonUrl = "http://fast-plateau-1802.herokuapp.com/database";
-    var newComment = { "person" : a, "comment" : t };
-    $.post(jsonUrl,newComment, function(data) {
-      alert("Added comment number " + data.pos + " " + data.person + " said " + data.comment);
+    var a = $("#text1").val(); // the person's id to give points to
+    var t = $("#text2").val(); // the number of points 
+    var jsonUrl = "http://fast-plateau-1802.herokuapp.com/points"; 
+    var newPoint = { "id" : a, "points" : t };
+    $.post(jsonUrl,newPoint, function(data) { // It's better to use put rather than post 
+      alert("Updated new points " + data.id + " said " + data.points);
     }, 'json');
   });
   
-  $( "#button2" ).bind( "click", function(event, ui) {
-    alert("Click ");
-    var jsonUrl = "http://fast-plateau-1802.herokuapp.com/database/person";
-    alert("Fetching result from "+jsonUrl);
-    $.get(jsonUrl, function(data) {
-    for(var i=0; i< data.length; i++)
-      $("#result").html("<p><b>"+data[i].person+" said "+data[i].comment+"</b></p>")
-    }, 'json');
-  });
+//  $( "#button2" ).bind( "click", function(event, ui) {
+//    alert("Click ");
+//    var jsonUrl = "http://fast-plateau-1802.herokuapp.com/database/person";
+//    alert("Fetching result from "+jsonUrl);
+//    $.get(jsonUrl, function(data) {
+//    for(var i=0; i< data.length; i++)
+//      $("#result").html("<p><b>"+data[i].person+" said "+data[i].comment+"</b></p>")
+//    }, 'json');
+//  });
 
 });
 </script>
