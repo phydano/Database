@@ -23,9 +23,9 @@ app.post('/points', function(req, res) {
 
   	query.on('row', function(result) {
     	console.log(result);
-    	result.addRow(row);
-    });
-    query.on('end', function(result) {
+//    	result.addRow(row);
+//    });
+//    query.on('end', function(result) {
     	var personId = req.body.id; // get the person's id 
     	var oldPoints = client.query("SELECT points FROM logindatabase WHERE id = $1", [personId]); // the old point the person has 
     	var newPoints = req.body.points; // the new points given 
