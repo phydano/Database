@@ -28,12 +28,11 @@ app.post('/points', function(req, res) {
 //    query.on('end', function(result) {
     	var personId = req.body.id; // get the person's id 
     	var oldPoints = client.query("SELECT points FROM logindatabase WHERE id = $1", [personId]); // the old point the person has 
-    	var oldPointsToInt = parseInt(oldPoints);
+    //	var oldPointsToInt = parseInt(oldPoints); This cause NAN - error 
     	var newPoints = req.body.points; // the new points given 
     	var newPointsToInt = parseInt(newPoints); // convert points to integer 
-    	var points = newPointsToInt + oldPointsToInt; // total points 
-    	var n = points.toString(); 
-    	client.query("UPDATE logindatabase SET points = $1 WHERE id = $2", [n, personId]); // update the person's points 
+    	var points = newPointsToInt + oldPoints; // total points 
+    	client.query("UPDATE logindatabase SET points = $1 WHERE id = $2", [points, personId]); // update the person's points 
   	});
 });
 
