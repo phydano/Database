@@ -23,7 +23,6 @@
 	<div id="result"  class="functions"></div>
 
         <label for="text-1">Give Points:</label>
-        <input type="submit" value="GET From the database" id="button2" />
         <input name="text-1" id="text1" value=" " type="text">
         <input name="text-1" id="text2" value=" " type="text">
         <input type="submit" value="Submit Button" id="button1" />
@@ -47,8 +46,10 @@ $(document).bind('pageinit', function() {
   $( "#button1" ).bind( "click", function(event, ui) {
     var a = $("#text1").val(); // the person's id to give points to
     var t = $("#text2").val(); // the number of points 
+    var user = parseInt(a);
+    var points = parseInt(t);
     var jsonUrl = "http://fast-plateau-1802.herokuapp.com/points"; 
-    var newPoint = { "id" : a, "points" : t };
+    var newPoint = { "id" : user, "points" : points };
     $.post(jsonUrl,newPoint, function(data) { // It's better to use put rather than post 
       alert("Updated new points " + data.id + " said " + data.points);
     }, 'json');
