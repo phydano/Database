@@ -118,7 +118,7 @@ $(document).bind('pageinit', function() {
   });
   
     $( "#delete" ).bind( "click", function(event, ui) {
-    var title = $("#greenpoints").val(); // the title of the event 
+    var greenpoints = $("#greenpoints").val(); // the title of the event 
     var jsonUrl = "http://fast-plateau-1802.herokuapp.com/remove"; 
     var newPoint = { "greenpoints" : greenpoints };
     $.post(jsonUrl,newPoint, function(data) { // It's better to use put rather than post 
