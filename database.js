@@ -48,7 +48,8 @@ app.post('/remove', function(req, res) {
 		res.statusCode = 400;
 		return res.send('Error 400: Post Syntax incorrect.');
 	}
-    client.query("DELETE FROM mapsdatabase2 WHERE title = $1", [req.body.title]);
+	var todelete = " " + req.body.title;
+    client.query("DELETE FROM mapsdatabase2 WHERE title = $1", [todelete]);
 });
 
 // Get all of the stuff from login database 
