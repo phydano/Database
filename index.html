@@ -103,6 +103,7 @@ $(document).bind('pageinit', function() {
     }, 'json');
   });
   
+  
     $( "#confirm" ).bind( "click", function(event, ui) {
     var title = $("#title").val(); // the title of the event 
     var description = $("#description").val(); // the description of the event 
@@ -113,6 +114,15 @@ $(document).bind('pageinit', function() {
     var newPoint = { "title" : title, "description" : description, "longitude" : longi, "latitude" : lati, "greenpoints" : greenpoints };
     $.post(jsonUrl,newPoint, function(data) { // It's better to use put rather than post 
       alert("Updated new points " + data.title + " with the description " + data.description);
+    }, 'json');
+  });
+  
+    $( "#remove" ).bind( "click", function(event, ui) {
+    var title = $("#title").val(); // the title of the event 
+    var jsonUrl = "http://fast-plateau-1802.herokuapp.com/remove"; 
+    var newPoint = { "title" : title };
+    $.post(jsonUrl,newPoint, function(data) { // It's better to use put rather than post 
+      alert("Updated new points " + data.title);
     }, 'json');
   });
   
