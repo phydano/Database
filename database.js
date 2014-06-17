@@ -42,10 +42,21 @@ app.post('/maps', function(req, res) {
     client.query("INSERT INTO mapsdatabase (title, description, longitude, latitude, greenpoints) VALUES ($1, $2, $3, $4, $5)", [req.body.title, req.body.description, req.body.longitude, req.body.latitude, req.body.greenpoints]);
 });
 
-// Get all of the stuff from database 
+// Get all of the stuff from login database 
 app.get('/database/get', function(req, res) {
-
   var query = client.query("SELECT * FROM logindatabase");
+  query.on('row', function(row, result) {
+    result.addRow(row);
+  });
+  query.on('end', function(result) {
+    // Send JSON back to the client
+    res.json(result.rows);
+    });
+});
+
+// Get all of the stuff from maps database 
+app.get('/maps/get', function(req, res) {
+  var query = client.query("SELECT * FROM mapsdatabase");
   query.on('row', function(row, result) {
     result.addRow(row);
   });

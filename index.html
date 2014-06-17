@@ -9,28 +9,53 @@
 <script src="http://code.jquery.com/jquery-1.9.1.min.js"></script>
 <script src="http://code.jquery.com/mobile/1.4.2/jquery.mobile-1.4.2.min.js"></script>
 	<!-- Refresh Function -->
-<script type="text/javascript">
-function refresh(){
-var jsonUrl = "http://fast-plateau-1802.herokuapp.com/database/get";
+	<script type="text/javascript">
+	function refresh(){
+		var jsonUrl = "http://fast-plateau-1802.herokuapp.com/database/get";
 
-$.get(jsonUrl, function(data) {
-console.log(data);
+		$.get(jsonUrl, function(data) {
+		console.log(data);
 
-// Save the JSON to localstorage
-localStorage.setItem('greenPoints', JSON.stringify(data));
-}, 'json');
+		// Save the JSON to localstorage
+		localStorage.setItem('greenPoints', JSON.stringify(data));
+		}, 'json');
 
-// Load JSON from localstorage
-var greenPoints = JSON.parse(localStorage.getItem('greenPoints'));
+		// Load JSON from localstorage
+		var greenPoints = JSON.parse(localStorage.getItem('greenPoints'));
 
-// Print JSON to the page
-for (var i=greenPoints.length-1; i>=0; i--){
-var person = greenPoints[i].id;
-var points = greenPoints[i].points;	
-$("#result").append("Person's ID: "+person+", Green Points: "+points+"<br>");
-}
-}
-</script>
+		// Print JSON to the page
+		for (var i=greenPoints.length-1; i>=0; i--){
+		var person = greenPoints[i].id;
+		var points = greenPoints[i].points;	
+		$("#result").append("Person's ID: "+person+", Green Points: "+points+"<br>");
+		}
+	}
+	</script>
+	
+	<!-- Save Function -->
+	<script type="text/javascript">
+	function save(){
+		var jsonUrl = "http://fast-plateau-1802.herokuapp.com/maps/get";
+		
+		$.get(jsonUrl, function(data) {
+		console.log(data);
+
+		// Save the JSON to localstorage
+		localStorage.setItem('test', JSON.stringify(data));
+		}, 'json');
+		
+		// Load JSON from localstorage
+		var test = JSON.parse(localStorage.getItem('test'));
+
+		// Print JSON to the page
+		for (var i=test.length-1; i>=0; i--){
+		var person = test[i].title;
+		var points = test[i].greenpoints;	
+		$("#result").append("Title: "+person+", Green Points: "+points+"<br>");
+		}
+	}
+	</script>
+	
 </head>
 <body onload="refresh()">
 <!-- Start of first page -->
