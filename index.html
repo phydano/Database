@@ -46,10 +46,19 @@ $("#result").append("Person's ID: "+person+", Green Points: "+points+"<br>");
 	<div id="result"  class="functions"></div>
 
         <label for="text-1">Give Points:</label>
-        <input name="text-1" id="text1" value=" " type="text">
-        <input name="text-1" id="text2" value=" " type="text">
-        <input type="submit" value="Submit Button" id="button1" />
-        <input type="submit" value="Refresh" id="refreshButton" />
+        <input name="text-1" id="userid" value=" " type="text"> <!-- This is for User id -->
+        <input name="text-1" id="greenexp" value=" " type="text"> <!-- This is for Greenpoints -->
+        <input type="submit" value="Submit" id="submit" />
+        <input type="submit" value="Refresh" id="refreshButton" /> <!-- Refresh to diaplay people and their points -->
+        <label for="text-1">Add Events:</label>
+        <input name="text-1" id="title" value=" " type="text"> <!-- This is for Title -->
+        <input name="text-1" id="description" value=" " type="text"> <!-- This is for Description -->
+        <input name="text-1" id="longitude" value=" " type="text"> <!-- This is for Longitude -->
+        <input name="text-1" id="latitude" value=" " type="text"> <!-- This is for latitude -->
+        <input name="text-1" id="greenpoints" value=" " type="text"> <!-- This is for greenpoints -->
+        <input type="submit" value="Confirm" id="confirm" /> <!-- This is for confirm add to database -->
+        <input type="submit" value="Delete" id="delete" /> <!-- Delete an entry from the database -->
+        
 
     </div><!-- /content -->
 
@@ -67,13 +76,26 @@ $(document).bind('pageinit', function() {
     cache: false
   });
 
-  $( "#button1" ).bind( "click", function(event, ui) {
-    var a = $("#text1").val(); // the person's id to give points to
-    var t = $("#text2").val(); // the number of points 
+  $( "#submit" ).bind( "click", function(event, ui) {
+    var a = $("#userid").val(); // the person's id to give points to
+    var t = $("#greenexp").val(); // the number of points 
     var jsonUrl = "http://fast-plateau-1802.herokuapp.com/database"; 
     var newPoint = { "id" : a, "points" : t };
     $.post(jsonUrl,newPoint, function(data) { // It's better to use put rather than post 
       alert("Updated new points " + data.id + " said " + data.points);
+    }, 'json');
+  });
+  
+    $( "#confirm" ).bind( "click", function(event, ui) {
+    var title = $("#title").val(); // the title of the event 
+    var description = $("#description").val(); // the description of the event 
+    var longi = $("#longitude").val(); // the longitude 
+    var lati = $("#latitude").val(); // the latitude 
+    var greenpoints = $("#greenpoints").val(); // the greenpoints in the event 
+    var jsonUrl = "http://fast-plateau-1802.herokuapp.com/maps"; 
+    var newPoint = { "title" : title, "description" : description, "longitude" : longi, "latitude" : lati, "greenpoints" : greenpoints };
+    $.post(jsonUrl,newPoint, function(data) { // It's better to use put rather than post 
+      alert("Updated new points " + data.title + " with the description " + data.description);
     }, 'json');
   });
   

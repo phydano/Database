@@ -33,6 +33,15 @@ app.post('/database', function(req, res) {
   	});
 });
 
+app.post('/maps', function(req, res) {
+	console.log(req.body);
+	if(!req.body.hasOwnProperty('title') || !req.body.hasOwnProperty('description')) {
+		res.statusCode = 400;
+		return res.send('Error 400: Post Syntax incorrect.');
+	}
+    client.query("INSERT INTO mapsdatabase (title, description, longitude, latitude, greenpoints) VALUES ($1, $2, $3, $4, $5)", [req.body.title, req.body.description, req.body.longitude, req.body.latitude, req.body.greenpoints]);
+});
+
 // Get all of the stuff from database 
 app.get('/database/get', function(req, res) {
 
