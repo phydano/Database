@@ -76,9 +76,7 @@
         <input type="submit" value="Save" id="savebutton" /> <!-- Save information to json files -->
         <input type="submit" value="Delete" id="delete" /> <!-- Delete an entry from the database -->
         
-
     </div><!-- /content -->
-
     <div data-role="footer">
         <h4>End</h4>
     </div><!-- /footer -->
@@ -92,7 +90,8 @@ $(document).bind('pageinit', function() {
   $.ajaxSetup ({
     cache: false
   });
-
+  
+  /* TAKEN THE USER ID AND POINTS AND SENT TO THE SERVER */
   $( "#submit" ).bind( "click", function(event, ui) {
     var a = $("#userid").val(); // the person's id to give points to
     var t = $("#greenexp").val(); // the number of points 
@@ -103,7 +102,7 @@ $(document).bind('pageinit', function() {
     }, 'json');
   });
   
-  
+    /* TAKEN THE TITLE AND OTHER STUFF FOR THE EVENTS ANS SENT TO THE SERVER */
     $( "#confirm" ).bind( "click", function(event, ui) {
     var title = $("#title").val(); // the title of the event 
     var description = $("#description").val(); // the description of the event 
@@ -117,24 +116,26 @@ $(document).bind('pageinit', function() {
     }, 'json');
   });
   
+  /* [ Delete Does not work ] 
     $( "#delete" ).bind( "click", function(event, ui) {
-    var greenpoints = $("#greenpoints").val(); // the title of the event 
+    var greenpoints = $("#greenpoints").val(); // the greenpoints 
     var jsonUrl = "http://fast-plateau-1802.herokuapp.com/remove"; 
     var newPoint = { "greenpoints" : greenpoints };
     $.post(jsonUrl,newPoint, function(data) { // It's better to use put rather than post 
       alert("Data to be delete " + data.greenpoints);
     }, 'json');
   });
+  */
   
-  	// Calls the refresh function
-$( "#refreshButton" ).bind( "click", function(event, ui) {
-refresh();
-});
-
-  	// Calls the save function
-$( "#savebutton" ).bind( "click", function(event, ui) {
-save();
-});
+  	/* CALLS THE REFRESH FUNCTION */
+	$( "#refreshButton" ).bind( "click", function(event, ui) {
+		refresh();
+	});
+	
+	/* CALLS THE SAVE FUNCTION */
+	$( "#savebutton" ).bind( "click", function(event, ui) {
+		save();
+	});
 
 });
 </script>
