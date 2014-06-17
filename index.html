@@ -41,18 +41,8 @@
 		console.log(data);
 
 		// Save the JSON to localstorage
-		localStorage.setItem('test', JSON.stringify(data));
+		localStorage.setItem('mapsinfo', JSON.stringify(data));
 		}, 'json');
-		
-		// Load JSON from localstorage
-		var test = JSON.parse(localStorage.getItem('test'));
-
-		// Print JSON to the page
-		for (var i=test.length-1; i>=0; i--){
-		var person = test[i].title;
-		var points = test[i].greenpoints;	
-		$("#result").append("Title: "+person+", Green Points: "+points+"<br>");
-		}
 	}
 	</script>
 	
