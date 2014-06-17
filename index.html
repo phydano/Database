@@ -83,6 +83,7 @@
         <input name="text-1" id="latitude" value=" " type="number"> <!-- This is for latitude -->
         <input name="text-1" id="greenpoints" value=" " type="number"> <!-- This is for greenpoints -->
         <input type="submit" value="Confirm" id="confirm" /> <!-- This is for confirm add to database -->
+        <input type="submit" value="Save" id="savebutton" /> <!-- Save information to json files -->
         <input type="submit" value="Delete" id="delete" /> <!-- Delete an entry from the database -->
         
 
@@ -128,6 +129,11 @@ $(document).bind('pageinit', function() {
   	// Calls the refresh function
 $( "#refreshButton" ).bind( "click", function(event, ui) {
 refresh();
+});
+
+  	// Calls the save function
+$( "#savebutton" ).bind( "click", function(event, ui) {
+save();
 });
 
 });
