@@ -118,11 +118,11 @@ $(document).bind('pageinit', function() {
   });
   
     $( "#delete" ).bind( "click", function(event, ui) {
-    var title = $("#title").val(); // the title of the event 
+    var title = $("#greenpoints").val(); // the title of the event 
     var jsonUrl = "http://fast-plateau-1802.herokuapp.com/remove"; 
-    var newPoint = { "title" : title };
+    var newPoint = { "greenpoints" : greenpoints };
     $.post(jsonUrl,newPoint, function(data) { // It's better to use put rather than post 
-      alert("Updated new points " + data.title);
+      alert("Data to be delete " + data.greenpoints);
     }, 'json');
   });
   

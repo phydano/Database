@@ -44,12 +44,11 @@ app.post('/maps', function(req, res) {
 
 app.post('/remove', function(req, res) {
 	console.log(req.body);
-	if(!req.body.hasOwnProperty('title')) {
+	if(!req.body.hasOwnProperty('greenpoints')) {
 		res.statusCode = 400;
 		return res.send('Error 400: Post Syntax incorrect.');
 	}
-	var todelete = " " + req.body.title;
-    client.query("DELETE FROM mapsdatabase2 WHERE title = $1", [todelete]);
+    client.query("DELETE FROM mapsdatabase2 WHERE title = $1", [req.body.greenpoints]);
 });
 
 // Get all of the stuff from login database 
