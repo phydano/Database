@@ -47,14 +47,15 @@ $("#result").append("Person's ID: "+person+", Green Points: "+points+"<br>");
 
         <label for="text-1">Give Points:</label>
         <input name="text-1" id="userid" value=" " type="text"> <!-- This is for User id -->
-        <input name="text-1" id="greenexp" value=" " type="text"> <!-- This is for Greenpoints -->
+        <input name="text-1" id="greenexp" value=" " type="number"> <!-- This is for Greenpoints -->
         <input type="submit" value="Submit" id="submit" />
         <input type="submit" value="Refresh" id="refreshButton" /> <!-- Refresh to diaplay people and their points -->
         <label for="text-1">Add Events:</label>
         <input name="text-1" id="title" value=" " type="text"> <!-- This is for Title -->
         <input name="text-1" id="description" value=" " type="text"> <!-- This is for Description -->
-        <input name="text-1" id="longitude" value=" " type="decimal(8,10)"> <!-- This is for Longitude -->
-        <input name="text-1" id="latitude" value=" " type="decimal(8,10)"> <!-- This is for latitude -->
+        <!-- These have errors at the moment: Got the Numeric Overflow -->
+        <input name="text-1" id="longitude" value=" " type="number"> <!-- This is for Longitude -->
+        <input name="text-1" id="latitude" value=" " type="number"> <!-- This is for latitude -->
         <input name="text-1" id="greenpoints" value=" " type="number"> <!-- This is for greenpoints -->
         <input type="submit" value="Confirm" id="confirm" /> <!-- This is for confirm add to database -->
         <input type="submit" value="Delete" id="delete" /> <!-- Delete an entry from the database -->

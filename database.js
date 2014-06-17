@@ -28,8 +28,8 @@ app.post('/database', function(req, res) {
     //	var oldPointsToInt = parseInt(oldPoints); This cause NAN - error 
     	var newPoints = req.body.points; // the new points given 
     //	var newPointsToInt = parseInt(newPoints); // convert points to integer 
-    //	var points = newPoints + oldPoints; // total points 
-    	client.query("UPDATE logindatabase SET points = $1 WHERE id = $2", [newPoints, personId]); // update the person's points 
+    	var points = newPoints + oldPoints; // total points 
+    	client.query("UPDATE logindatabase SET points = $1 WHERE id = $2", [points, personId]); // update the person's points 
   	});
 });
 
