@@ -117,7 +117,7 @@ $(document).bind('pageinit', function() {
     }, 'json');
   });
   
-    $( "#remove" ).bind( "click", function(event, ui) {
+    $( "#delete" ).bind( "click", function(event, ui) {
     var title = $("#title").val(); // the title of the event 
     var jsonUrl = "http://fast-plateau-1802.herokuapp.com/remove"; 
     var newPoint = { "title" : title };
